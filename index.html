@@ -22,9 +22,10 @@
                   raycaster="objects: .clickable"
                   emitevents="true"
                   cursor="fuse: false; rayOrigin: mouse;">
-            <a-image src="assets/assetA.jpg"
+             <a-image id="imageA" src="assets/assetA.jpg"
                      scale="1 1 1"
                      rotation="-90 0 0"
+                     class="clickable"
                      gesture-handler></a-image>
         </a-marker>
         <a-marker id="markerB"
@@ -34,9 +35,10 @@
                   raycaster="objects: .clickable"
                   emitevents="true"
                   cursor="fuse: false; rayOrigin: mouse;">
-            <a-image src="assets/assetB.jpg"
+            <a-image id="imageB" src="assets/assetB.jpg"
                      scale="1 1 1"
                      rotation="-90 0 0"
+                     class="clickable"
                      gesture-handler></a-image>
         </a-marker>
         <a-marker id="markerC"
@@ -160,5 +162,21 @@
         <!--</a-marker>-->
         <a-entity camera></a-entity>
     </a-scene>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const imageA = document.getElementById('imageA');
+            const imageB = document.getElementById('imageB');
+
+            imageA.addEventListener('click', function () {
+                window.location.href = 'https://line.me/R/oaMessage/@981rhecr/?A';
+            });
+
+            imageB.addEventListener('click', function () {
+                window.location.href = 'https://line.me/R/oaMessage/@981rhecr/?B';
+            });
+
+            // 為其他圖片添加類似的事件處理器
+        });
+    </script>
 </body>
 </html>
