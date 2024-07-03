@@ -77,22 +77,19 @@
                      rotation="-90 0 0"
                      gesture-handler></a-image>
         </a-marker>
-        <a-marker id="markerF"
-                  type="pattern"
-                  preset="custom"
-                  url="assets/F.patt"
-                  raycaster="objects: .clickable"
-                  emitevents="true"
-                  cursor="fuse: false; rayOrigin: mouse;">
-            <a-image id="imageF" src="assets/assetF.jpg"
-                     scale="1 1 1"
-                     rotation="-90 0 0"
-                     class="clickable"
-                     gesture-handler="minScale: 0.25; maxScale: 10"
-                     event-set__click="_event: click; _target: #imageF; _emit: true"
-                     event-set__touch="_event: touch; _target: #imageF; _emit: true"></a-image>
-        </a-marker>
-
+<a-marker id="markerF"
+          type="pattern"
+          preset="custom"
+          url="assets/F.patt"
+          raycaster="objects: .clickable"
+          emitevents="true"
+          cursor="fuse: false; rayOrigin: mouse;">
+    <a-image id="imageF" src="assets/assetF.jpg"
+             scale="1 1 1"
+             rotation="-90 0 0"
+             class="clickable"
+             gesture-handler></a-image>
+</a-marker>
          <a-marker id="markerU"
                   type="pattern"
                   preset="custom"
@@ -178,54 +175,17 @@
         <!--</a-marker>-->
         <a-entity camera></a-entity>
     </a-scene>
-  <a-image id="imageF" src="assets/assetF.jpg"
-         scale="1 1 1"
-         rotation="-90 0 0"
-         class="clickable"
-         gesture-handler
-         event-set__click="_event: click; _target: #imageF; _emit: true"
-         event-set__touch="_event: touch; _target: #imageF; _emit: true"></a-image>
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const imageF = document.getElementById('imageF');
 
-   <script>
-        window.addEventListener('load', function () {
-            var imageF = document.querySelector('#imageF');
-            var scene = document.querySelector('a-scene');
-            var debugElement = document.getElementById('debug');
-
-            function updateDebug(message) {
-                debugElement.textContent = message + ' at ' + new Date().toISOString();
-            }
-
-            function handleInteraction(event) {
-                updateDebug('Interaction detected: ' + event.type);
-                console.log('Interaction detected: ' + event.type);
-                // 延迟跳转，以便查看调试信息
-                setTimeout(function() {
-                    window.location.href = 'https://line.me/R/oaMessage/@981rhecr/?黑魔法項鍊';
-                }, 1000);
-            }
-
-            if (imageF) {
-                console.log('imageF found');
-                updateDebug('imageF found');
-                
-                // 添加多种事件监听器
-                imageF.addEventListener('click', handleInteraction);
-                imageF.addEventListener('touchstart', handleInteraction);
-                imageF.addEventListener('mousedown', handleInteraction);
-            } else {
-                console.error('imageF not found');
-                updateDebug('imageF not found');
-            }
-
-            // 使用 A-Frame 的事件系统
-            scene.addEventListener('click', function (event) {
-                if (event.detail.intersectedEl && event.detail.intersectedEl.id === 'imageF') {
-                    handleInteraction(event);
-                }
-            });
+        imageF.addEventListener('click', function () {
+            window.location.href = 'https://line.me/R/oaMessage/@981rhecr/?黑魔法項鍊';
         });
-    </script>
+
+        // 移除其他图片的点击事件处理器
+    });
+</script>
+  
 </body>
 </html>
-
