@@ -1,4 +1,4 @@
-<!doctype html>
+!doctype html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -84,7 +84,7 @@
                      rotation="-90 0 0"
                      gesture-handler></a-image>
         </a-marker>
-       <a-marker id="markerF"
+        <a-marker id="markerF"
                   type="pattern"
                   preset="custom"
                   url="assets/F.patt"
@@ -180,19 +180,10 @@
              rotation="-90 0 0"
              gesture-handler></a-image>-->
         <!--</a-marker>-->
-<a-entity camera></a-entity>
+   <a-entity camera></a-entity>
     </a-scene>
     
     <script>
-        AFRAME.registerComponent('clickhandler', {
-            init: function() {
-                this.el.addEventListener('click', function() {
-                    updateDebug('A-Frame click event on imageF');
-                    redirectToLine();
-                });
-            }
-        });
-
         function updateDebug(message) {
             const debugElement = document.getElementById('debug');
             debugElement.textContent = message + ' at ' + new Date().toISOString();
@@ -201,39 +192,54 @@
 
         function redirectToLine() {
             updateDebug('Redirecting to LINE');
-            setTimeout(function() {
-                window.location.href = 'https://line.me/R/oaMessage/@981rhecr/?黑魔法項鍊';
-            }, 1000);
+            window.location.href = 'https://line.me/R/oaMessage/@981rhecr/?黑魔法項鍊';
         }
 
         document.addEventListener('DOMContentLoaded', function () {
+            updateDebug('DOM Content Loaded');
+
+            const scene = document.querySelector('a-scene');
+            const markerF = document.getElementById('markerF');
             const imageF = document.getElementById('imageF');
-            
-            if (imageF) {
-                updateDebug('imageF found');
-                imageF.setAttribute('clickhandler', '');
-                
-                // 添加多种事件监听器
-                imageF.addEventListener('click', function(event) {
-                    updateDebug('DOM click event on imageF');
+
+            if (scene && markerF && imageF) {
+                updateDebug('All elements found');
+
+                // 为整个场景添加事件监听器
+                scene.addEventListener('click', function (event) {
+                    updateDebug('Scene clicked');
                     redirectToLine();
                 });
-                imageF.addEventListener('touchstart', function(event) {
-                    updateDebug('Touchstart event on imageF');
+
+                scene.addEventListener('touchstart', function (event) {
+                    updateDebug('Scene touch started');
+                    redirectToLine();
+                });
+
+                // 为 marker 添加事件监听器
+                markerF.addEventListener('markerFound', function () {
+                    updateDebug('Marker F found');
+                });
+
+                // 为图像添加事件监听器
+                imageF.addEventListener('click', function (event) {
+                    updateDebug('Image F clicked');
                     redirectToLine();
                 });
             } else {
-                updateDebug('imageF not found');
+                updateDebug('Some elements not found');
             }
+        });
 
-            // 使用 A-Frame 的事件系统
-            const scene = document.querySelector('a-scene');
-            scene.addEventListener('click', function (event) {
-                if (event.detail.intersectedEl && event.detail.intersectedEl.id === 'imageF') {
-                    updateDebug('Scene click event detected on imageF');
-                    redirectToLine();
-                }
-            });
+        // 添加全局点击事件
+        document.body.addEventListener('click', function (event) {
+            updateDebug('Body clicked');
+            redirectToLine();
+        });
+
+        document.body.addEventListener('touchstart', function (event) {
+            updateDebug('Body touch started');
+            redirectToLine();
         });
     </script>
 </body>
