@@ -1,9 +1,6 @@
 <!doctype html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AR Image Interaction</title>
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
     <script src="https://raw.githack.com/AR-js-org/studio-backend/master/src/modules/marker/tools/gesture-detector.js"></script>
@@ -11,17 +8,12 @@
 </head>
 
 <body style="margin: 0; overflow: hidden;">
-    <div id="debug" style="position: fixed; top: 10px; left: 10px; background: white; padding: 10px; z-index: 9999;">
-        Debug Info
-    </div>
-
     <a-scene vr-mode-ui="enabled: false;"
              loading-screen="enabled: false;"
              arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;"
              id="scene"
              embedded
              gesture-detector>
-    
     
         <a-marker id="markerA"
                   type="pattern"
@@ -85,25 +77,18 @@
                      rotation="-90 0 0"
                      gesture-handler></a-image>
         </a-marker>
-                 <a-marker id="markerF"
+<a-marker id="markerF"
                   type="pattern"
                   preset="custom"
                   url="assets/F.patt"
                   raycaster="objects: .clickable"
                   emitevents="true"
                   cursor="fuse: false; rayOrigin: mouse;">
-            <a-image id="imageF" src="assets/assetF.jpg"
-                     scale="2 2 2"
+            <a-image src="assets/assetF.jpg"
+                     scale="1 1 1"
                      rotation="-90 0 0"
-                     class="clickable"
                      gesture-handler></a-image>
-            <a-plane id="clickPlane" 
-                     color="transparent" 
-                     scale="2.1 2.1 2.1" 
-                     rotation="-90 0 0" 
-                     class="clickable"></a-plane>
         </a-marker>
-
          <a-marker id="markerU"
                   type="pattern"
                   preset="custom"
@@ -187,72 +172,22 @@
              rotation="-90 0 0"
              gesture-handler></a-image>-->
         <!--</a-marker>-->
-    <a-entity camera></a-entity>
+        <a-entity camera></a-entity>
     </a-scene>
-    
     <script>
-        let markerVisible = false;
-
-        function updateDebug(message) {
-            const debugElement = document.getElementById('debug');
-            debugElement.textContent = message + ' at ' + new Date().toISOString();
-            console.log(message);
-        }
-
-        function redirectToLine() {
-            if (markerVisible) {
-                updateDebug('Redirecting to LINE');
-                window.location.href = 'https://line.me/R/oaMessage/@981rhecr/?黑魔法項鍊';
-            } else {
-                updateDebug('Marker not visible, cannot redirect');
-            }
-        }
-
-        AFRAME.registerComponent('marker-handler', {
-            init: function () {
-                this.el.addEventListener('markerFound', function () {
-                    markerVisible = true;
-                    updateDebug('Marker F found');
-                });
-                this.el.addEventListener('markerLost', function () {
-                    markerVisible = false;
-                    updateDebug('Marker F lost');
-                });
-            }
-        });
-
-        AFRAME.registerComponent('clickable', {
-            init: function () {
-                this.el.addEventListener('click', function (evt) {
-                    updateDebug('Element clicked: ' + this.id);
-                    redirectToLine();
-                });
-                this.el.addEventListener('touchstart', function (evt) {
-                    updateDebug('Element touched: ' + this.id);
-                    redirectToLine();
-                });
-            }
-        });
-
         document.addEventListener('DOMContentLoaded', function () {
-            updateDebug('DOM Content Loaded');
+            const imageA = document.getElementById('imageA');
+            const imageB = document.getElementById('imageB');
 
-            const markerF = document.getElementById('markerF');
-            const imageF = document.getElementById('imageF');
-            const clickPlane = document.getElementById('clickPlane');
-
-            if (markerF && imageF && clickPlane) {
-                updateDebug('All elements found');
-                markerF.setAttribute('marker-handler', '');
-                imageF.setAttribute('clickable', '');
-                clickPlane.setAttribute('clickable', '');
-            } else {
-                updateDebug('Some elements not found');
-            }
-
-            document.querySelector('a-scene').addEventListener('click', function (evt) {
-                updateDebug('Scene clicked');
+            imageA.addEventListener('click', function () {
+                window.location.href = 'https://line.me/R/oaMessage/@981rhecr/?黑魔法項鍊';
             });
+
+            imageB.addEventListener('click', function () {
+                window.location.href = 'https://line.me/R/oaMessage/@981rhecr/?黑魔法護身符';
+            });
+
+            // 為其他圖片添加類似的事件處理器
         });
     </script>
 </body>
