@@ -77,6 +77,19 @@
                      rotation="-90 0 0"
                      gesture-handler></a-image>
         </a-marker>
+<a-marker id="markerF"
+          type="pattern"
+          preset="custom"
+          url="assets/F.patt"
+          raycaster="objects: .clickable"
+          emitevents="true"
+          cursor="fuse: false; rayOrigin: mouse;">
+    <a-image id="imageF" src="assets/assetF.jpg"
+             scale="1 1 1"
+             rotation="-90 0 0"
+             class="clickable"
+             gesture-handler></a-image>
+</a-marker>
          <a-marker id="markerU"
                   type="pattern"
                   preset="custom"
@@ -163,20 +176,16 @@
         <a-entity camera></a-entity>
     </a-scene>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const imageA = document.getElementById('imageA');
-            const imageB = document.getElementById('imageB');
+    document.addEventListener('DOMContentLoaded', function () {
+        const imageF = document.getElementById('imageF');
 
-            imageA.addEventListener('click', function () {
-                window.location.href = 'https://line.me/R/oaMessage/@981rhecr/?黑魔法項鍊';
-            });
-
-            imageB.addEventListener('click', function () {
-                window.location.href = 'https://line.me/R/oaMessage/@981rhecr/?黑魔法護身符';
-            });
-
-            // 為其他圖片添加類似的事件處理器
+        imageF.addEventListener('click', function () {
+            window.location.href = 'https://line.me/R/oaMessage/@981rhecr/?黑魔法項鍊';
         });
-    </script>
+
+        // 移除其他图片的点击事件处理器
+    });
+</script>
+  
 </body>
 </html>
