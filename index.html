@@ -22,7 +22,6 @@
              embedded
              gesture-detector>
     
-    
         <a-marker id="markerA"
                   type="pattern"
                   preset="custom"
@@ -85,7 +84,7 @@
                      rotation="-90 0 0"
                      gesture-handler></a-image>
         </a-marker>
-        <a-marker id="markerF"
+       <a-marker id="markerF"
                   type="pattern"
                   preset="custom"
                   url="assets/F.patt"
@@ -181,34 +180,48 @@
              rotation="-90 0 0"
              gesture-handler></a-image>-->
         <!--</a-marker>-->
- <a-entity camera></a-entity>
+<a-entity camera></a-entity>
     </a-scene>
     
     <script>
+        AFRAME.registerComponent('clickhandler', {
+            init: function() {
+                this.el.addEventListener('click', function() {
+                    updateDebug('A-Frame click event on imageF');
+                    redirectToLine();
+                });
+            }
+        });
+
+        function updateDebug(message) {
+            const debugElement = document.getElementById('debug');
+            debugElement.textContent = message + ' at ' + new Date().toISOString();
+            console.log(message);
+        }
+
+        function redirectToLine() {
+            updateDebug('Redirecting to LINE');
+            setTimeout(function() {
+                window.location.href = 'https://line.me/R/oaMessage/@981rhecr/?黑魔法項鍊';
+            }, 1000);
+        }
+
         document.addEventListener('DOMContentLoaded', function () {
             const imageF = document.getElementById('imageF');
-            const debugElement = document.getElementById('debug');
-
-            function updateDebug(message) {
-                debugElement.textContent = message + ' at ' + new Date().toISOString();
-                console.log(message);
-            }
-
-            function handleInteraction(event) {
-                updateDebug('Interaction detected: ' + event.type);
-                // 延迟跳转，以便查看调试信息
-                setTimeout(function() {
-                    window.location.href = 'https://line.me/R/oaMessage/@981rhecr/?黑魔法項鍊';
-                }, 1000);
-            }
-
+            
             if (imageF) {
                 updateDebug('imageF found');
+                imageF.setAttribute('clickhandler', '');
                 
                 // 添加多种事件监听器
-                imageF.addEventListener('click', handleInteraction);
-                imageF.addEventListener('touchstart', handleInteraction);
-                imageF.addEventListener('mousedown', handleInteraction);
+                imageF.addEventListener('click', function(event) {
+                    updateDebug('DOM click event on imageF');
+                    redirectToLine();
+                });
+                imageF.addEventListener('touchstart', function(event) {
+                    updateDebug('Touchstart event on imageF');
+                    redirectToLine();
+                });
             } else {
                 updateDebug('imageF not found');
             }
@@ -217,7 +230,8 @@
             const scene = document.querySelector('a-scene');
             scene.addEventListener('click', function (event) {
                 if (event.detail.intersectedEl && event.detail.intersectedEl.id === 'imageF') {
-                    handleInteraction(event);
+                    updateDebug('Scene click event detected on imageF');
+                    redirectToLine();
                 }
             });
         });
