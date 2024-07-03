@@ -84,11 +84,13 @@
           raycaster="objects: .clickable"
           emitevents="true"
           cursor="fuse: false; rayOrigin: mouse;">
-    <a-image id="imageF" src="assets/assetF.jpg"
-             scale="1 1 1"
-             rotation="-90 0 0"
-             class="clickable"
-             gesture-handler></a-image>
+   <a-image id="imageF" src="assets/assetF.jpg"
+         scale="1 1 1"
+         rotation="-90 0 0"
+         class="clickable"
+         gesture-handler
+         event-set__click="_event: click; _target: #imageF; _emit: true"
+         event-set__touch="_event: touch; _target: #imageF; _emit: true"></a-image>
 </a-marker>
          <a-marker id="markerU"
                   type="pattern"
@@ -175,23 +177,43 @@
         <!--</a-marker>-->
         <a-entity camera></a-entity>
     </a-scene>
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const imageF = document.getElementById('imageF');
+  <a-image id="imageF" src="assets/assetF.jpg"
+         scale="1 1 1"
+         rotation="-90 0 0"
+         class="clickable"
+         gesture-handler
+         event-set__click="_event: click; _target: #imageF; _emit: true"
+         event-set__touch="_event: touch; _target: #imageF; _emit: true"></a-image>
+
+然后，更新 JavaScript 代码以处理多种触摸事件：
+
+htmlCopy<script>
+    window.addEventListener('load', function () {
+        var imageF = document.querySelector('#imageF');
+        var scene = document.querySelector('a-scene');
+
+        function handleInteraction(event) {
+            console.log('Interaction detected');
+            window.location.href = 'https://line.me/R/oaMessage/@981rhecr/?黑魔法項鍊';
+        }
 
         if (imageF) {
             console.log('imageF found');
-
-            const handleClick = function (event) {
-                console.log('imageF clicked');
-                window.location.href = 'https://line.me/R/oaMessage/@981rhecr/?黑魔法項鍊';
-            };
-
-            imageF.addEventListener('click', handleClick);
-            imageF.addEventListener('mousedown', handleClick);
+            
+            // 添加多种事件监听器
+            imageF.addEventListener('click', handleInteraction);
+            imageF.addEventListener('touchstart', handleInteraction);
+            imageF.addEventListener('mousedown', handleInteraction);
         } else {
             console.error('imageF not found');
         }
+
+        // 使用 A-Frame 的事件系统
+        scene.addEventListener('click', function (event) {
+            if (event.detail.intersectedEl && event.detail.intersectedEl.id === 'imageF') {
+                handleInteraction(event);
+            }
+        });
     });
 </script>
   
