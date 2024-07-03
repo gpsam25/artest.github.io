@@ -175,15 +175,23 @@
         <!--</a-marker>-->
         <a-entity camera></a-entity>
     </a-scene>
-    <script>
+   <script>
     document.addEventListener('DOMContentLoaded', function () {
         const imageF = document.getElementById('imageF');
 
-        imageF.addEventListener('click', function () {
-            window.location.href = 'https://line.me/R/oaMessage/@981rhecr/?黑魔法項鍊';
-        });
+        if (imageF) {
+            console.log('imageF found');
 
-        // 移除其他图片的点击事件处理器
+            const handleClick = function (event) {
+                console.log('imageF clicked');
+                window.location.href = 'https://line.me/R/oaMessage/@981rhecr/?黑魔法項鍊';
+            };
+
+            imageF.addEventListener('click', handleClick);
+            imageF.addEventListener('mousedown', handleClick);
+        } else {
+            console.error('imageF not found');
+        }
     });
 </script>
   
