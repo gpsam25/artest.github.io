@@ -1,6 +1,9 @@
 <!doctype html>
 <html>
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AR Image Interaction</title>
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
     <script src="https://raw.githack.com/AR-js-org/studio-backend/master/src/modules/marker/tools/gesture-detector.js"></script>
@@ -8,12 +11,17 @@
 </head>
 
 <body style="margin: 0; overflow: hidden;">
+    <div id="debug" style="position: fixed; top: 10px; left: 10px; background: white; padding: 10px; z-index: 9999;">
+        Debug Info
+    </div>
+
     <a-scene vr-mode-ui="enabled: false;"
              loading-screen="enabled: false;"
              arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;"
              id="scene"
              embedded
              gesture-detector>
+    
     
         <a-marker id="markerA"
                   type="pattern"
@@ -77,16 +85,17 @@
                      rotation="-90 0 0"
                      gesture-handler></a-image>
         </a-marker>
-<a-marker id="markerF"
+        <a-marker id="markerF"
                   type="pattern"
                   preset="custom"
                   url="assets/F.patt"
                   raycaster="objects: .clickable"
                   emitevents="true"
                   cursor="fuse: false; rayOrigin: mouse;">
-            <a-image src="assets/assetF.jpg"
+            <a-image id="imageF" src="assets/assetF.jpg"
                      scale="1 1 1"
                      rotation="-90 0 0"
+                     class="clickable"
                      gesture-handler></a-image>
         </a-marker>
          <a-marker id="markerU"
@@ -172,22 +181,45 @@
              rotation="-90 0 0"
              gesture-handler></a-image>-->
         <!--</a-marker>-->
-        <a-entity camera></a-entity>
+ <a-entity camera></a-entity>
     </a-scene>
+    
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            const imageA = document.getElementById('imageA');
-            const imageB = document.getElementById('imageB');
+            const imageF = document.getElementById('imageF');
+            const debugElement = document.getElementById('debug');
 
-            imageA.addEventListener('click', function () {
-                window.location.href = 'https://line.me/R/oaMessage/@981rhecr/?黑魔法項鍊';
+            function updateDebug(message) {
+                debugElement.textContent = message + ' at ' + new Date().toISOString();
+                console.log(message);
+            }
+
+            function handleInteraction(event) {
+                updateDebug('Interaction detected: ' + event.type);
+                // 延迟跳转，以便查看调试信息
+                setTimeout(function() {
+                    window.location.href = 'https://line.me/R/oaMessage/@981rhecr/?黑魔法項鍊';
+                }, 1000);
+            }
+
+            if (imageF) {
+                updateDebug('imageF found');
+                
+                // 添加多种事件监听器
+                imageF.addEventListener('click', handleInteraction);
+                imageF.addEventListener('touchstart', handleInteraction);
+                imageF.addEventListener('mousedown', handleInteraction);
+            } else {
+                updateDebug('imageF not found');
+            }
+
+            // 使用 A-Frame 的事件系统
+            const scene = document.querySelector('a-scene');
+            scene.addEventListener('click', function (event) {
+                if (event.detail.intersectedEl && event.detail.intersectedEl.id === 'imageF') {
+                    handleInteraction(event);
+                }
             });
-
-            imageB.addEventListener('click', function () {
-                window.location.href = 'https://line.me/R/oaMessage/@981rhecr/?黑魔法護身符';
-            });
-
-            // 為其他圖片添加類似的事件處理器
         });
     </script>
 </body>
