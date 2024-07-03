@@ -77,6 +77,18 @@
                      rotation="-90 0 0"
                      gesture-handler></a-image>
         </a-marker>
+<a-marker id="markerF"
+                  type="pattern"
+                  preset="custom"
+                  url="assets/F.patt"
+                  raycaster="objects: .clickable"
+                  emitevents="true"
+                  cursor="fuse: false; rayOrigin: mouse;">
+            <a-image src="assets/assetF.jpg"
+                     scale="1 1 1"
+                     rotation="-90 0 0"
+                     gesture-handler></a-image>
+        </a-marker>
          <a-marker id="markerU"
                   type="pattern"
                   preset="custom"
@@ -149,19 +161,6 @@
                      rotation="-90 0 0"
                      gesture-handler></a-image>
         </a-marker>
-        <a-marker id="markerF"
-                  type="pattern"
-                  preset="custom"
-                  url="assets/F.patt"
-                  raycaster="objects: .clickable"
-                  emitevents="true"
-                  cursor="fuse: false; rayOrigin: mouse;">
-            <a-image id="imageF" src="assets/assetF.jpg"
-                     scale="1 1 1"
-                     rotation="-90 0 0"
-                     class="clickable"
-                     gesture-handler></a-image>
-        </a-marker>
         <!--<a-marker id="markerB"
           type="pattern"
           preset="custom"
@@ -177,18 +176,18 @@
     </a-scene>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            const imageF = document.getElementById('imageF');
+            const imageA = document.getElementById('imageA');
+            const imageB = document.getElementById('imageB');
 
-            function handleClick(url) {
-                window.location.href = url;
-            }
+            imageA.addEventListener('click', function () {
+                window.location.href = 'https://line.me/R/oaMessage/@981rhecr/?黑魔法項鍊';
+            });
 
-            imageF.addEventListener('click', function () {
-                handleClick('https://line.me/R/oaMessage/@981rhecr/?黑魔法護身符');
+            imageB.addEventListener('click', function () {
+                window.location.href = 'https://line.me/R/oaMessage/@981rhecr/?黑魔法護身符';
             });
-            imageF.addEventListener('touchstart', function () {
-                handleClick('https://line.me/R/oaMessage/@981rhecr/?黑魔法護身符');
-            });
+
+            // 為其他圖片添加類似的事件處理器
         });
     </script>
 </body>
