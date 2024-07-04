@@ -77,18 +77,6 @@
                      rotation="-90 0 0"
                      gesture-handler></a-image>
         </a-marker>
-<a-marker id="markerF"
-                  type="pattern"
-                  preset="custom"
-                  url="assets/F.patt"
-                  raycaster="objects: .clickable"
-                  emitevents="true"
-                  cursor="fuse: false; rayOrigin: mouse;">
-            <a-image src="assets/assetF.jpg"
-                     scale="1 1 1"
-                     rotation="-90 0 0"
-                     gesture-handler></a-image>
-        </a-marker>
          <a-marker id="markerU"
                   type="pattern"
                   preset="custom"
@@ -161,6 +149,19 @@
                      rotation="-90 0 0"
                      gesture-handler></a-image>
         </a-marker>
+        <a-marker id="markerF"
+                  type="pattern"
+                  preset="custom"
+                  url="assets/F.patt"
+                  raycaster="objects: .clickable"
+                  emitevents="true"
+                  cursor="fuse: false; rayOrigin: mouse;">
+            <a-image id="imageF" src="assets/assetF.jpg"
+                     scale="1 1 1"
+                     rotation="-90 0 0"
+                     class="clickable"
+                     gesture-handler></a-image>
+        </a-marker>
         <!--<a-marker id="markerB"
           type="pattern"
           preset="custom"
@@ -176,18 +177,13 @@
     </a-scene>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            const imageA = document.getElementById('imageA');
-            const imageB = document.getElementById('imageB');
+            const imageF = document.getElementById('imageF');
 
-            imageA.addEventListener('click', function () {
-                window.location.href = 'https://line.me/R/oaMessage/@981rhecr/?黑魔法項鍊';
-            });
-
-            imageB.addEventListener('click', function () {
+            function redirectToLine() {
                 window.location.href = 'https://line.me/R/oaMessage/@981rhecr/?黑魔法護身符';
-            });
+            }
 
-            // 為其他圖片添加類似的事件處理器
+            setTimeout(redirectToLine, 3000); // 3 seconds delay
         });
     </script>
 </body>
