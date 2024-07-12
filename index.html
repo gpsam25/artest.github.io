@@ -22,7 +22,7 @@
                   raycaster="objects: .clickable"
                   emitevents="true"
                   cursor="fuse: false; rayOrigin: mouse;">
-             <a-image id="imageA" src="assets/assetA.jpg"
+             <a-image  src="assets/assetA.jpg"
                      scale="1 1 1"
                      rotation="-90 0 0"
                      class="clickable"
@@ -35,7 +35,7 @@
                   raycaster="objects: .clickable"
                   emitevents="true"
                   cursor="fuse: false; rayOrigin: mouse;">
-            <a-image id="imageB" src="assets/assetB.jpg"
+            <a-image src="assets/assetB.jpg"
                      scale="1 1 1"
                      rotation="-90 0 0"
                      class="clickable"
@@ -48,7 +48,7 @@
                   raycaster="objects: .clickable"
                   emitevents="true"
                   cursor="fuse: false; rayOrigin: mouse;">
-            <a-image src="assets/assetC.jpg"
+            <a-image id="imageA" src="assets/assetC.jpg"
                      scale="1 1 1"
                      rotation="-90 0 0"
                      gesture-handler></a-image>
@@ -176,20 +176,14 @@
     </a-scene>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            const imageA = document.getElementById('imageA');
-            const imageB = document.getElementById('imageB');
-    
+            const imageC = document.getElementById('imageA');
+           
 
-            imageA.addEventListener('click', function () {
+            imageC.addEventListener('click', function () {
                 window.location.href = 'https://line.me/R/oaMessage/@981rhecr/?黑魔法項鍊';
             });
 
-            imageB.addEventListener('click', function () {
-                window.location.href = 'https://line.me/R/oaMessage/@981rhecr/?黑魔法項鍊';
-            });
-
-            
-
+  
           
         });
     </script>
