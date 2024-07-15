@@ -13,7 +13,9 @@
              arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;"
              id="scene"
              embedded
-             gesture-detector>
+             gesture-detector
+             custom-listener
+        >
     
         <a-marker id="markerA"
                   type="pattern"
@@ -178,17 +180,14 @@
         <a-entity camera></a-entity>
     </a-scene>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const imageF = document.getElementById('imageF');
-           
-
-            imageF.addEventListener('click', function () {
-                window.location.href = 'https://line.me/R/oaMessage/@981rhecr/?黑魔法項鍊';
-            });
-
-  
-          
-        });
+       AFRAME.registerComponent('custom-listener', {
+  init: function () {
+    const imageF = document.getElementById('imageF');
+    imageF.addEventListener('click', function () {
+      window.location.href = 'https://line.me/R/oaMessage/@981rhecr/?黑魔法項鍊';
+    });
+  }
+});
     </script>
 </body>
 </html>
