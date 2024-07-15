@@ -90,7 +90,7 @@
          scale="2 2 2"
          rotation="-90 0 0"
          class="clickable"
-         onclick="window.location.href='https://line.me/R/oaMessage/@981rhecr/?黑魔法項鍊'">
+         event-set__click="_event: click; url: https://line.me/R/oaMessage/@981rhecr/?黑魔法項鍊">
 </a-image>
         </a-marker>
          <a-marker id="markerU"
@@ -165,6 +165,25 @@
                      rotation="-90 0 0"
                      gesture-handler></a-image>
         </a-marker>
-       
+        <!--<a-marker id="markerB"
+          type="pattern"
+          preset="custom"
+          url="assets/pattern-wallet.patt"
+          raycaster="objects: .clickable"
+          emitevents="true"
+          cursor="fuse: false; rayOrigin: mouse;">
+    <a-image src="#MCat"  scale="2 2 2"
+             rotation="-90 0 0"
+             gesture-handler></a-image>-->
+        <!--</a-marker>-->
+        <a-entity camera></a-entity>
+    </a-scene>
+    <script>
+document.querySelector('#imageF').addEventListener('click', function (evt) {
+  window.location.href = evt.target.getAttribute('url');
+    });
+  }
+});
+    </script>
 </body>
 </html>
