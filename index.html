@@ -89,9 +89,8 @@
 <a-image id="imageF" src="assets/assetF.jpg"
          scale="2 2 2"
          rotation="-90 0 0"
-         gesture-handler
          class="clickable"
-         link="href: https://line.me/R/oaMessage/@981rhecr/?黑魔法項鍊;">
+         onclick="window.location.href='https://line.me/R/oaMessage/@981rhecr/?黑魔法項鍊'">
 </a-image>
         </a-marker>
          <a-marker id="markerU"
@@ -166,28 +165,6 @@
                      rotation="-90 0 0"
                      gesture-handler></a-image>
         </a-marker>
-        <!--<a-marker id="markerB"
-          type="pattern"
-          preset="custom"
-          url="assets/pattern-wallet.patt"
-          raycaster="objects: .clickable"
-          emitevents="true"
-          cursor="fuse: false; rayOrigin: mouse;">
-    <a-image src="#MCat"  scale="2 2 2"
-             rotation="-90 0 0"
-             gesture-handler></a-image>-->
-        <!--</a-marker>-->
-        <a-entity camera></a-entity>
-    </a-scene>
-    <script>
-       AFRAME.registerComponent('custom-listener', {
-  init: function () {
-    const imageF = document.getElementById('imageF');
-    imageF.addEventListener('click', function () {
-      window.location.href = 'https://line.me/R/oaMessage/@981rhecr/?黑魔法項鍊';
-    });
-  }
-});
-    </script>
+       
 </body>
 </html>
