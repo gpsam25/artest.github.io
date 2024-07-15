@@ -13,9 +13,7 @@
              arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;"
              id="scene"
              embedded
-             gesture-detector
-             custom-listener
-        >
+             gesture-detector>
     
         <a-marker id="markerA"
                   type="pattern"
@@ -86,13 +84,10 @@
                   raycaster="objects: .clickable"
                   emitevents="true"
                   cursor="fuse: false; rayOrigin: mouse;">
-<a-image id="imageF" src="assets/assetF.jpg"
-         scale="2 2 2"
-         rotation="-90 0 0"
-         class="clickable"
-         clickhandler>
-</a-image>
-
+            <a-image id="imageF" src="assets/assetF.jpg"
+                     scale="2 2 2"
+                     rotation="-90 0 0"
+                     gesture-handler></a-image>
         </a-marker>
          <a-marker id="markerU"
                   type="pattern"
@@ -180,19 +175,23 @@
         <a-entity camera></a-entity>
     </a-scene>
     <script>
-AFRAME.registerComponent('clickhandler', {
-  init: function() {
-    this.el.addEventListener('click', () => {
-      window.location.href = 'https://line.me/R/oaMessage/@981rhecr/?黑魔法項鍊';
-    });
-  }
+        document.addEventListener('DOMContentLoaded', function() {
+    function bindClickEvent() {
+        const imageF = document.querySelector('#imageF');
+        if (imageF) {
+            imageF.addEventListener('click', function (evt) {
+                window.location.href = 'https://line.me/R/oaMessage/@981rhecr/?黑魔法項鍊';
+            });
+            console.log('Click event bound to #imageF');
+        } else {
+            console.log('#imageF not found, retrying...');
+            setTimeout(bindClickEvent, 500); // 每500毫秒檢查一次
+        }
+    }
+
+    bindClickEvent();
 });
 
-    });
-});
-    });
-  }
-});
     </script>
 </body>
 </html>
