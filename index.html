@@ -90,8 +90,9 @@
          scale="2 2 2"
          rotation="-90 0 0"
          class="clickable"
-         event-set__click="_event: click; url: https://line.me/R/oaMessage/@981rhecr/?黑魔法項鍊">
+         clickhandler>
 </a-image>
+
         </a-marker>
          <a-marker id="markerU"
                   type="pattern"
@@ -179,9 +180,14 @@
         <a-entity camera></a-entity>
     </a-scene>
     <script>
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelector('#imageF').addEventListener('click', function (evt) {
-        window.location.href = evt.target.getAttribute('url');
+AFRAME.registerComponent('clickhandler', {
+  init: function() {
+    this.el.addEventListener('click', () => {
+      window.location.href = 'https://line.me/R/oaMessage/@981rhecr/?黑魔法項鍊';
+    });
+  }
+});
+
     });
 });
     });
