@@ -174,24 +174,32 @@
         <!--</a-marker>-->
         <a-entity camera></a-entity>
     </a-scene>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-    function bindClickEvent() {
-        const imageF = document.querySelector('#imageF');
-        if (imageF) {
-            imageF.addEventListener('click', function (evt) {
-                window.location.href = 'https://line.me/R/oaMessage/@981rhecr/?黑魔法項鍊';
-            });
-            console.log('Click event bound to #imageF');
-        } else {
-            console.log('#imageF not found, retrying...');
-            setTimeout(bindClickEvent, 500); // 每500毫秒檢查一次
+<script>
+    window.onload = function () {
+
+        // 定義點擊事件處理器
+        function handleClickF() {
+            window.location.href = 'https://line.me/R/oaMessage/@981rhecr/?黑魔法項鍊';
         }
-    }
 
-    bindClickEvent();
-});
 
-    </script>
+        alert("Test version 6");
+
+        // 綁定 markerA 的事件
+        var markerF = document.querySelector("#markerF");
+        var imageF = document.querySelector("#imageF");
+
+        markerF.addEventListener("markerFound", function () {
+            imageF.addEventListener("click", handleClickF);
+        });
+
+        markerFaddEventListener("markerLost", function () {
+            imageF.removeEventListener("click", handleClickF);
+        });
+
+       
+    };
+    
+</script>
 </body>
 </html>
