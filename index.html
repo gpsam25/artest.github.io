@@ -178,26 +178,40 @@
     window.onload = function () {
 
         // 定義點擊事件處理器
-        function handleClickF() {
+        function handleClickA() {
             window.location.href = 'https://line.me/R/oaMessage/@981rhecr/?黑魔法項鍊';
         }
 
 
+        function handleClickB() {
+            window.location.href = 'https://line.me/R/oaMessage/@981rhecr/?黑魔法護身符';
+        }
+
         alert("Test version 6");
 
         // 綁定 markerA 的事件
-        var markerF = document.querySelector("#markerF");
-        var imageF = document.querySelector("#imageF");
+        var markerA = document.querySelector("#markerA");
+        var imageA = document.querySelector("#imageA");
 
-        markerF.addEventListener("markerFound", function () {
-            imageF.addEventListener("click", handleClickF);
+        markerA.addEventListener("markerFound", function () {
+            imageA.addEventListener("click", handleClickA);
         });
 
-        markerFaddEventListener("markerLost", function () {
-            imageF.removeEventListener("click", handleClickF);
+        markerA.addEventListener("markerLost", function () {
+            imageA.removeEventListener("click", handleClickA);
         });
 
-       
+        // 綁定 markerB 的事件
+        var markerB = document.querySelector("#markerWallet");
+        var imageB = document.querySelector("#imageB");
+
+        markerB.addEventListener("markerFound", function () {
+            imageB.addEventListener("click", handleClickB);
+        });
+
+        markerB.addEventListener("markerLost", function () {
+            imageB.removeEventListener("click", handleClickB);
+        });
     };
     
 </script>
